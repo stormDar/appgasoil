@@ -178,7 +178,7 @@ function myFunction(){
         
     function suministragasoil()
         {
-            var url = "nuevogasoil.php";
+            var url = "nuevasalidagasoil.php";
             var ancho= (window.screen.width /2) - 400;
             window.open(url, "_blank",'resizable=no, scrollbars=no, toolbar=no, location=no, menubar=no, width=800, height=300, top=70 , left='+ancho); 
                 // el return falase es para eviar que se progrague el evento y se vaya al href de tu anchor.

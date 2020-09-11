@@ -40,7 +40,7 @@
 				<?php 
 
 				//Barra vertical de informes (para todas las páginas)
-				//require("require/inform-bar.php"); 
+				require("require/inform-bar.php"); 
 
 				//Muestra los resultados de la busqueda
 				require("require/search-result-index.php");

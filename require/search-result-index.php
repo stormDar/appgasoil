@@ -21,7 +21,10 @@
 							<div class="col-3">
 								<h4>Observaciones</h4>
 							</div>
-							<div class="col-2">
+							<div class="col-1">
+								<h4>Empresa</h4>
+							</div>
+							<div class="col-1">
 								<h4>Almacen</h4>
 							</div>
 							<div class="col-1">
@@ -47,7 +50,7 @@
 								if($matricula!="")
 									{
 									//$query1="SELECT IdRepostaje,CantidadRepostaje,FechaRepostaje,HoraRepostaje,IdVehiculoRepostaje,NotasRepostaje,NombreObra,Usuario,KmVehiculo FROM ga_gasoil,ga_obra WHERE CodAlmacen='".$_SESSION['almacen']."' and (IdObraGasoil=IdObra) and (IdVehiculoRepostaje LIKE '%$matricula%') ORDER BY FechaRepostaje desc,HoraRepostaje desc";
-									$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, idobra, codalmacen, notas, creador FROM ga_salida";
+									$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, idobra, codalmacen, notas, creador, empresa FROM ga_salida";
 
 									}
 									else
@@ -55,7 +58,7 @@
 										if($fecha!="")
 										{
 											//$query1="SELECT IdRepostaje,CantidadRepostaje,FechaRepostaje,HoraRepostaje,IdVehiculoRepostaje,NotasRepostaje,NombreObra,Usuario,KmVehiculo FROM ga_gasoil,ga_obra WHERE CodAlmacen='".$_SESSION['almacen']."' and (IdObraGasoil=IdObra) and (FechaRepostaje LIKE '%$fecha%') ORDER BY FechaRepostaje desc,HoraRepostaje desc";
-											$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, idobra, codalmacen, notas, creador FROM ga_salida";
+											$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, idobra, codalmacen, notas, creador, empresa FROM ga_salida";
 
 										}
 										else
@@ -63,13 +66,13 @@
 											if($ubicacion!=""){
 
 												//$query1="SELECT IdRepostaje,CantidadRepostaje,FechaRepostaje,HoraRepostaje,IdVehiculoRepostaje,NotasRepostaje,NombreObra,Usuario,KmVehiculo FROM ga_gasoil,ga_obra WHERE CodAlmacen='".$_SESSION['almacen']."' and (IdObraGasoil=IdObra) and (NombreObra LIKE '%$ubicacion%') ORDER BY FechaRepostaje desc,HoraRepostaje desc";
-												$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, idobra, codalmacen, notas, creador FROM ga_salida";
+												$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, idobra, codalmacen, notas, creador, empresa FROM ga_salida";
 
 											}
 											else{
 
 												//$query1="SELECT IdRepostaje,CantidadRepostaje,FechaRepostaje,HoraRepostaje,IdVehiculoRepostaje,NotasRepostaje,NombreObra,Usuario,KmVehiculo FROM ga_gasoil,ga_obra WHERE CodAlmacen='".$_SESSION['almacen']."' and (IdObraGasoil=IdObra) ORDER BY FechaRepostaje desc,HoraRepostaje desc";
-												$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, idobra, codalmacen, notas, creador FROM ga_salida";
+												$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, idobra, codalmacen, notas, creador, empresa FROM ga_salida";
 
 											}
 											
@@ -90,13 +93,14 @@
 											<a onclick='editagasoil(".$busqueda[0].");'><img src='img/edit.png'></a>
 											<a onclick='borragasoil(".$busqueda[0].")'><img src='img/delete.png'></a>
 										</div>
-										<div class='col-1'><span>".$busqueda[4]."</span></div>
+										<div class='col-1'><span>".$busqueda[1]."</span></div>
 										<div class='col-1'><span>".$busqueda[2]."</span></div>
 										<div class='col-1'><span>".$busqueda[3]."</span></div>
-										<div class='col-1'><span>".$busqueda[1]."</span></div>
+										<div class='col-1'><span>".$busqueda[4]."</span></div>
 										<div class='col-1'><span>".$busqueda[5]."</span></div>
 										<div class='col-3'><span>".$busqueda[7]."</span></div>
-										<div class='col-2'><span>".$busqueda[6]."</span></div>
+										<div class='col-1'><span>".$busqueda[9]."</span></div>
+										<div class='col-1'><span>".$busqueda[6]."</span></div>
 										<div class='col-1'><span>".$busqueda[8]."</span></div>
 									</div>";
 

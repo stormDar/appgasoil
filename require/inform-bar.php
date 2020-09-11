@@ -2,9 +2,9 @@
 
 //$almacen=$_SESSION['almacen'];		
 //$almacen=$_SESSION['1'];		
-$porcentajegasoil="SELECT * FROM ga_tanquetotal where CodAlmacen='$almacen'";
+//$porcentajegasoil="SELECT * FROM ga_tanquetotal where CodAlmacen='$almacen'";
 
-$queryporcentaje=mysqli_query($conexion, $porcentajegasoil);
+//$queryporcentaje=mysqli_query($conexion, $porcentajegasoil);
 ?>
 				<div class="col-lg-2">
 					<div class="informes-bar">
@@ -28,7 +28,7 @@ $queryporcentaje=mysqli_query($conexion, $porcentajegasoil);
 								<h3>% Depósito</h3>
 
 								<?php
-								echo "<div class='row'><div class='col-12'>";
+								/*echo "<div class='row'><div class='col-12'>";
 
 								while ($resultado2=mysqli_fetch_array($queryporcentaje)) {
 									
@@ -63,7 +63,7 @@ $queryporcentaje=mysqli_query($conexion, $porcentajegasoil);
 									echo "</div></div>";
 								}
 
-
+								*/
 								?>
 							</div>
 						</div>
