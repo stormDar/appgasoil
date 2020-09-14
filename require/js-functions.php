@@ -164,7 +164,7 @@ function myFunction(){
         
     function editagasoil(codigo)
         {
-            var url = "editgasoil.php?cod="+codigo+"";
+            var url = "editsalidagasoil.php?cod="+codigo+"";
             var ancho= (window.screen.width /2) - 400;
             window.open(url, "_blank",'resizable=no, scrollbars=no, toolbar=no, location=no, menubar=no, width=800, height=700, top=70 , left='+ancho); 
                 // el return falase es para eviar que se progrague el evento y se vaya al href de tu anchor.

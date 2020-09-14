@@ -36,9 +36,9 @@
 
 						<?php
 							//mostramos los datos de la busqueda
-							//if (isset($_POST['token'])) {
-							$var='1';
-							if ($var=1) {
+							if (isset($_POST['token'])) {
+							//$var='1';
+							//if ($var=1) {
 
 								//Obtenemos los datos recibidos
 								$matricula=$_POST["Matricula"];
@@ -50,7 +50,7 @@
 								if($matricula!="")
 									{
 									//$query1="SELECT IdRepostaje,CantidadRepostaje,FechaRepostaje,HoraRepostaje,IdVehiculoRepostaje,NotasRepostaje,NombreObra,Usuario,KmVehiculo FROM ga_gasoil,ga_obra WHERE CodAlmacen='".$_SESSION['almacen']."' and (IdObraGasoil=IdObra) and (IdVehiculoRepostaje LIKE '%$matricula%') ORDER BY FechaRepostaje desc,HoraRepostaje desc";
-									$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, idobra, codalmacen, notas, creador, empresa FROM ga_salida";
+									$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, NombreCentro, codalmacen, notas, creador, empresa FROM ga_salida, centros WHERE idobra=IdCentro";
 
 									}
 									else
@@ -58,7 +58,7 @@
 										if($fecha!="")
 										{
 											//$query1="SELECT IdRepostaje,CantidadRepostaje,FechaRepostaje,HoraRepostaje,IdVehiculoRepostaje,NotasRepostaje,NombreObra,Usuario,KmVehiculo FROM ga_gasoil,ga_obra WHERE CodAlmacen='".$_SESSION['almacen']."' and (IdObraGasoil=IdObra) and (FechaRepostaje LIKE '%$fecha%') ORDER BY FechaRepostaje desc,HoraRepostaje desc";
-											$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, idobra, codalmacen, notas, creador, empresa FROM ga_salida";
+											$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, NombreCentro, codalmacen, notas, creador, empresa FROM ga_salida, centros WHERE idobra=IdCentro";
 
 										}
 										else
@@ -66,13 +66,13 @@
 											if($ubicacion!=""){
 
 												//$query1="SELECT IdRepostaje,CantidadRepostaje,FechaRepostaje,HoraRepostaje,IdVehiculoRepostaje,NotasRepostaje,NombreObra,Usuario,KmVehiculo FROM ga_gasoil,ga_obra WHERE CodAlmacen='".$_SESSION['almacen']."' and (IdObraGasoil=IdObra) and (NombreObra LIKE '%$ubicacion%') ORDER BY FechaRepostaje desc,HoraRepostaje desc";
-												$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, idobra, codalmacen, notas, creador, empresa FROM ga_salida";
+												$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, NombreCentro, codalmacen, notas, creador, empresa FROM ga_salida, centros WHERE idobra=IdCentro";
 
 											}
 											else{
 
 												//$query1="SELECT IdRepostaje,CantidadRepostaje,FechaRepostaje,HoraRepostaje,IdVehiculoRepostaje,NotasRepostaje,NombreObra,Usuario,KmVehiculo FROM ga_gasoil,ga_obra WHERE CodAlmacen='".$_SESSION['almacen']."' and (IdObraGasoil=IdObra) ORDER BY FechaRepostaje desc,HoraRepostaje desc";
-												$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, idobra, codalmacen, notas, creador, empresa FROM ga_salida";
+												$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, NombreCentro, codalmacen, notas, creador, empresa FROM ga_salida, centros WHERE idobra=IdCentro";
 
 											}
 											
@@ -83,7 +83,7 @@
 
 								// mostramos los datos recogidos
 
-								$resultado=mysqli_query($conexion,$query1) or die("Ha ocurrido un error nigga");
+								$resultado=mysqli_query($conexion,$query1) or die("Ha ocurrido un error nigga!");
 
 								while($busqueda=mysqli_fetch_array($resultado))
 								{
