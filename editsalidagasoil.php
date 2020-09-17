@@ -56,7 +56,7 @@ error_reporting(0);
 							
 							/*echo "<div class='row'><div class='col-3'>Matricula</div><div class='col-9'>".$anterior[3]."</div></div><div class='row'><div class='col-3'>Fecha</div><div class='col-9'>".$anterior[1]."</div></div><div class='row'><div class='col-3'>Hora</div><div class='col-9'>".$anterior[2]."</div></div><div class='row'><div class='col-3'>Cantidad</div><div class='col-9'>".$anterior[0]."</div></div><div class='row'><div class='col-3'>Obra</div><div class='col-9'>".	$anterior[6]."</div></div><div class='row'><div class='col-3'>Notas</div><div class='col-9'>".$anterior[4]."</div></div>";*/
 
-							echo "<div class='row'><div class='col-3'>Matricula</div><div class='col-9'>".$anterior[1]."</div></div><div class='row'><div class='col-3'>Fecha</div><div class='col-9'>".$anterior[2]."</div></div><div class='row'><div class='col-3'>Hora</div><div class='col-9'>".$anterior[3]."</div></div><div class='row'><div class='col-3'>Litros</div><div class='col-9'>".$anterior[4]."</div></div><div class='row'><div class='col-3'>Obra</div><div class='col-9'>".	$anterior[5]."</div></div><div class='row'><div class='col-3'>Notas</div><div class='col-9'>".$anterior[7]."</div></div>";
+							echo "<div class='row'><div class='col-3'>Matricula</div><div class='col-9'>".$anterior[1]."</div></div><div class='row'><div class='col-3'>Fecha</div><div class='col-9'>".$anterior[2]."</div></div><div class='row'><div class='col-3'>Hora</div><div class='col-9'>".$anterior[3]."</div></div><div class='row'><div class='col-3'>Litros</div><div class='col-9'>".$anterior[4]."</div></div><div class='row'><div class='col-3'>Obra</div><div class='col-9'>".$anterior[5]."</div></div><div class='row'><div class='col-3'>Notas</div><div class='col-9'>".$anterior[7]."</div></div>";
 
 							/*$matricula=$anterior[3];
 							$fecha=$anterior[1];
@@ -83,15 +83,15 @@ error_reporting(0);
 
 							//obtenemos el id de la obra modificada
 
-									//$sentenciaobras3="SELECT IdCentro FROM centros where Nombreobra='$nombreobra'";
+									$idobra="SELECT IdCentro FROM centros where NombreCentro='$nombreobra'";
 
-									//$resultadoobras3=mysqli_query($conexion, $sentenciaobras3);
+									$resultadoobras3=mysqli_query($conexion, $idobra);
 
-									//while($resultadoobra4=mysqli_fetch_array($resultadoobras3))
-									//{
-									//	$obramodificada5=$obramodificada4[0];
-									//	echo $obramodificada5;
-									//}
+									while($resultadoobra4=mysqli_fetch_array($resultadoobras3))
+									{
+										$obramodificada5=$resultadoobra4[0];
+										echo $obramodificada5;
+									}
 						}
 							
 
@@ -139,15 +139,7 @@ error_reporting(0);
 							<div class='row'>
 								<div class='col-2'>Empresa</div>
 								<div class='col-4'>
-									<select name="Empresa" id="Empresa" selected="Integra">
-										<option value="Zaragoza 2012">Zaragoza 2012</option>
-										<option value="Odel">Odel</option>
-										<option value="Integra">Integra</option>
-										<option value="Cleanzcom">Cleanzcom</option>
-										<option value="Momentum Alquiler">Momentum Alquiler</option>
-										<option value="Automatismos Felipe">Automatismos Felipe</option> 
-									</select>
-									<!--<input type="text" name="Empresa" id="Empresa" value="<?php /*echo "$empresa"; */?>">-->
+									<input type="text" name="Empresa" id="Empresa" value="<?php echo "$empresa"; ?>">
 								</div>
 							</div>
 							<div class='row'>
@@ -191,6 +183,7 @@ error_reporting(0);
 									$matriculanueva=$_POST["Matricula"];
 									$horanueva=$_POST["Hora"];
 									$obranueva=$_POST["Ubicacion"];
+									//$obranueva=$resultadoobra4[0];
 									$cantidadnueva=$_POST['Cantidad'];
 									$fechanueva = $_POST['Fecha'];
 									$notasnuevas=$_POST['Notas'];
@@ -201,14 +194,14 @@ error_reporting(0);
 
 									//obtenemos el id de la obra modificada
 
-			//						$sentenciaobras2="SELECT idobra FROM ga_obra where Nombreobra='$obranueva'";
+									$sentenciaobras2="SELECT IdCentro FROM centros where NombreCentro='$obranueva'";
 
-			//						$resultadoobras2=mysqli_query($conexion, $sentenciaobras2);
+									$resultadoobras2=mysqli_query($conexion, $sentenciaobras2);
 
-			//						while($obramodificada=mysqli_fetch_array($resultadoobras2))
-			//						{
-			//							$obramodificada2=$obramodificada[0];
-			//						}
+									while($obramodificada=mysqli_fetch_array($resultadoobras2))
+									{
+										$idobramodificada2=$obramodificada[0];
+									}
 
 
 
@@ -222,12 +215,12 @@ error_reporting(0);
 									
 										//consulta de modificación de registro
 									
-										$query2 = "UPDATE ga_salida SET kilometraje='$kilometrajenuevo', litros='$cantidadnueva', fecha='$fechanueva', hora='$horanueva', idvehiculo='$matriculanueva', notas='$notasnuevas',idobra=$obramodificada2, empresa='$empresanueva' WHERE idsalida='$codigonuevo'";
+										$query2 = "UPDATE ga_salida SET kilometraje='$kilometrajenuevo', litros='$cantidadnueva', fecha='$fechanueva', hora='$horanueva', idvehiculo='$matriculanueva', notas='$notasnuevas', idobra='$idobramodificada2', empresa='$empresanueva' WHERE idsalida='$codigonuevo'";
 
-										/*$modificar=mysqli_query($conexion, $query2) or die("Fallo del query2");
+										$modificar=mysqli_query($conexion, $query2) or die("Fallo del query2");
 
 											//actualiza el stock
-											require("actualizagasoil.php");*/
+											//require("actualizagasoil.php");
 
 										echo "<script>alert('Datos modificados correctamente'); window.close();</script>";
 

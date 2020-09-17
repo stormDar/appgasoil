@@ -40,9 +40,7 @@
 						<?php
 							//mostramos los datos de la busqueda
 							if (isset($_POST['token'])) {
-							//$var='1';
-							//if ($var=1) {
-
+							
 								//Obtenemos los datos recibidos
 								$matricula=$_POST["Matricula"];
 								$ubicacion=$_POST["Ubicacion"];
