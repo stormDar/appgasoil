@@ -7,6 +7,9 @@
 								<h4>Matrícula</h4>
 							</div>
 							<div class="col-1">
+								<h4>Kilometraje</h4>
+							</div>
+							<div class="col-1">
 								<h4>Fecha</h4>
 							</div>
 							<div class="col-1">
@@ -18,7 +21,7 @@
 							<div class="col-1">
 								<h4>Obra</h4>
 							</div>
-							<div class="col-3">
+							<div class="col-2">
 								<h4>Observaciones</h4>
 							</div>
 							<div class="col-1">
@@ -50,15 +53,15 @@
 								if($matricula!="")
 									{
 									//$query1="SELECT IdRepostaje,CantidadRepostaje,FechaRepostaje,HoraRepostaje,IdVehiculoRepostaje,NotasRepostaje,NombreObra,Usuario,KmVehiculo FROM ga_gasoil,ga_obra WHERE CodAlmacen='".$_SESSION['almacen']."' and (IdObraGasoil=IdObra) and (IdVehiculoRepostaje LIKE '%$matricula%') ORDER BY FechaRepostaje desc,HoraRepostaje desc";
-									$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, NombreCentro, codalmacen, notas, creador, empresa FROM ga_salida, centros WHERE idobra=IdCentro";
-
+									$query1="SELECT idsalida, vehiculos.MatriculaVehiculo, fecha, hora, litros, NombreCentro, codalmacen, notas, creador, empresa, kilometraje FROM ga_salida, centros, vehiculos WHERE idobra=IdCentro and ga_salida.idvehiculo=vehiculos.IdVehiculo and (ga_salida.idvehiculo=vehiculos.IdVehiculo) and (vehiculos.MatriculaVehiculo LIKE '%$matricula%') ORDER BY fecha desc";
+									
 									}
 									else
 									{
 										if($fecha!="")
 										{
 											//$query1="SELECT IdRepostaje,CantidadRepostaje,FechaRepostaje,HoraRepostaje,IdVehiculoRepostaje,NotasRepostaje,NombreObra,Usuario,KmVehiculo FROM ga_gasoil,ga_obra WHERE CodAlmacen='".$_SESSION['almacen']."' and (IdObraGasoil=IdObra) and (FechaRepostaje LIKE '%$fecha%') ORDER BY FechaRepostaje desc,HoraRepostaje desc";
-											$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, NombreCentro, codalmacen, notas, creador, empresa FROM ga_salida, centros WHERE idobra=IdCentro";
+											$query1="SELECT idsalida, vehiculos.MatriculaVehiculo, fecha, hora, litros, NombreCentro, codalmacen, notas, creador, empresa, kilometraje FROM ga_salida, centros, vehiculos WHERE idobra=IdCentro and ga_salida.idvehiculo=vehiculos.IdVehiculo and (fecha LIKE '%$fecha%') ORDER BY fecha desc";
 
 										}
 										else
@@ -66,13 +69,13 @@
 											if($ubicacion!=""){
 
 												//$query1="SELECT IdRepostaje,CantidadRepostaje,FechaRepostaje,HoraRepostaje,IdVehiculoRepostaje,NotasRepostaje,NombreObra,Usuario,KmVehiculo FROM ga_gasoil,ga_obra WHERE CodAlmacen='".$_SESSION['almacen']."' and (IdObraGasoil=IdObra) and (NombreObra LIKE '%$ubicacion%') ORDER BY FechaRepostaje desc,HoraRepostaje desc";
-												$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, NombreCentro, codalmacen, notas, creador, empresa FROM ga_salida, centros WHERE idobra=IdCentro";
+												$query1="SELECT idsalida, vehiculos.MatriculaVehiculo, fecha, hora, litros, NombreCentro, codalmacen, notas, creador, empresa, kilometraje FROM ga_salida, centros, vehiculos WHERE idobra=IdCentro and ga_salida.idvehiculo=vehiculos.IdVehiculo and (Nombrecentro LIKE '%$ubicacion%') ORDER BY fecha desc";
 
 											}
 											else{
 
 												//$query1="SELECT IdRepostaje,CantidadRepostaje,FechaRepostaje,HoraRepostaje,IdVehiculoRepostaje,NotasRepostaje,NombreObra,Usuario,KmVehiculo FROM ga_gasoil,ga_obra WHERE CodAlmacen='".$_SESSION['almacen']."' and (IdObraGasoil=IdObra) ORDER BY FechaRepostaje desc,HoraRepostaje desc";
-												$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, NombreCentro, codalmacen, notas, creador, empresa FROM ga_salida, centros WHERE idobra=IdCentro";
+												$query1="SELECT idsalida, vehiculos.MatriculaVehiculo, fecha, hora, litros, NombreCentro, codalmacen, notas, creador, empresa, kilometraje FROM ga_salida, centros, vehiculos WHERE idobra=IdCentro and ga_salida.idvehiculo=vehiculos.IdVehiculo ORDER BY fecha desc";
 
 											}
 											
@@ -94,11 +97,12 @@
 											<a onclick='borragasoil(".$busqueda[0].")'><img src='img/delete.png'></a>
 										</div>
 										<div class='col-1'><span>".$busqueda[1]."</span></div>
+										<div class='col-1'><span>".$busqueda[10]."</span></div>
 										<div class='col-1'><span>".$busqueda[2]."</span></div>
 										<div class='col-1'><span>".$busqueda[3]."</span></div>
 										<div class='col-1'><span>".$busqueda[4]."</span></div>
 										<div class='col-1'><span>".$busqueda[5]."</span></div>
-										<div class='col-3'><span>".$busqueda[7]."</span></div>
+										<div class='col-2'><span>".$busqueda[7]."</span></div>
 										<div class='col-1'><span>".$busqueda[9]."</span></div>
 										<div class='col-1'><span>".$busqueda[6]."</span></div>
 										<div class='col-1'><span>".$busqueda[8]."</span></div>

@@ -53,10 +53,10 @@ require("conexion.php");
 						Hora: <br>
 						<input type="time" id="Hora" name="Hora">
 					</div>
-					<!--<div class="col-3">
+					<div class="col-3">
 						Kilometraje: <br>
 						<input type="number" id="Kilometraje" name="Kilometraje">
-					</div>-->
+					</div>
 					<div class="col-4">
 						Empresa: <br>
 						<select name="Empresa">
@@ -105,33 +105,40 @@ require("conexion.php");
 									$almacen='1';
 									//$usuario=$_SESSION['usuario'];
 									$usuario='el_creador';
-									//$kilometraje=$_POST['Kilometraje'];
+									$kilometraje=$_POST['Kilometraje'];
 									$hora=$_POST['Hora'];
 									$empresa=$_POST['Empresa'];
 
 									//transformar el texto recibido en obra
 
-									/*$sentencia="SELECT * FROM ga_obra where NombreObra='$ubicacion'";
+		//							$sentencia="SELECT * FROM centros where NombreCentro='$ubicacion'";
 									
-									$rows=mysqli_query($conexion,$sentencia);
+		//							$rows=mysqli_query($conexion,$sentencia);
 
-									if ($rows->num_rows == 0)
+									/*if ($rows->num_rows == 0)
 									{
 										$insertar="INSERT INTO ga_obra (NombreObra,EstadoObra) values ('$ubicacion','abierta')";
 										$meterobra=mysqli_query($conexion,$insertar);
-									}
-
-									$sentenciacodigo="SELECT * FROM ga_obra where NombreObra='$ubicacion'";
-
-									$ejecutarcodigo=mysqli_query($conexion, $sentenciacodigo);
-
-									while ($fila=mysqli_fetch_array($ejecutarcodigo)) {
-										
-										$codobra=$fila[0];
 									}*/
+
+		//							if ($rows->num_rows == 0)
+		//							{
+		//								echo "<script>alert('Por favor, registra primero la obra antes de crear este registro!')</script>";
+		//							}
+
+		//							$sentenciacodigo="SELECT * FROM centros where NombreCentro='$ubicacion'";
+
+		//							$ejecutarcodigo=mysqli_query($conexion, $sentenciacodigo);
+
+		//							while ($fila=mysqli_fetch_array($ejecutarcodigo)) {
+										
+		//								$codobra=$fila[0];
+		//							}
+
+
 									//ejecutamos la consulta de introducción de registro de datos
 					
-									$query="INSERT INTO ga_salida (idvehiculo,fecha,hora,litros,idobra,codalmacen,notas,creador,empresa) values ('$matricula','$fecha','$hora','$cantidad','$ubicacion','$almacen','$notas','$usuario','$empresa')";
+									$query="INSERT INTO ga_salida (idvehiculo,kilometraje,fecha,hora,litros,idobra,codalmacen,notas,creador,empresa) values ('$matricula','$kilometraje','$fecha','$hora','$cantidad','$ubicacion','$almacen','$notas','$usuario','$empresa')";
 
 									echo "<script>alert('Ha introducido los datos correctamente')</script>";
 

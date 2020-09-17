@@ -8,7 +8,7 @@ error_reporting(0);
 
 	// sentencia que busca los datos referentes al codigo que recibe para modificar
 	//$query1="SELECT CantidadRepostaje, FechaRepostaje, HoraRepostaje, IdVehiculoRepostaje, NotasRepostaje,IdRepostaje,NombreObra,IdObra,KmVehiculo,Empresa FROM ga_gasoil,ga_obra WHERE IdObra=IdObraGasoil and IdRepostaje='$codigo' ";
-	$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, NombreCentro, codalmacen, notas, creador, empresa FROM ga_salida, centros WHERE idobra=IdCentro and idsalida='$codigo'";
+	$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, NombreCentro, codalmacen, notas, creador, empresa, kilometraje FROM ga_salida, centros WHERE idobra=IdCentro and idsalida='$codigo'";
 	
 	$resultado=mysqli_query($conexion,$query1) or die("Algo ha salido mal");
 
@@ -77,7 +77,7 @@ error_reporting(0);
 							$notas=$anterior[7];
 							$codigo=$anterior[0];
 							//$codigoobra=$anterior[];
-							//$kilometraje=$anterior[8];
+							$kilometraje=$anterior[10];
 							//$empresa=$anterior['Empresa'];
 							$empresa=$anterior[9];
 
@@ -124,12 +124,12 @@ error_reporting(0);
 									<input type="number" name="Cantidad" id="Cantidad" value="<?php echo "$cantidad"; ?>">
 								</div>
 							</div>
-							<!--<div class="row">
+							<div class="row">
 								<div class='col-2'>Kilometraje</div>
 								<div class='col-4'>
 									<input type="number" name="Kilometraje" id="Kilometraje" value="<?php echo "$kilometraje"; ?>">
 								</div>
-							</div>-->
+							</div>
 							<div class='row'>
 								<div class='col-2'>Obra</div>
 								<div class='col-4'>
@@ -139,7 +139,15 @@ error_reporting(0);
 							<div class='row'>
 								<div class='col-2'>Empresa</div>
 								<div class='col-4'>
-									<input type="text" name="Empresa" id="Empresa" value="<?php echo "$empresa"; ?>">
+									<select name="Empresa" id="Empresa" selected="Integra">
+										<option value="Zaragoza 2012">Zaragoza 2012</option>
+										<option value="Odel">Odel</option>
+										<option value="Integra">Integra</option>
+										<option value="Cleanzcom">Cleanzcom</option>
+										<option value="Momentum Alquiler">Momentum Alquiler</option>
+										<option value="Automatismos Felipe">Automatismos Felipe</option> 
+									</select>
+									<!--<input type="text" name="Empresa" id="Empresa" value="<?php /*echo "$empresa"; */?>">-->
 								</div>
 							</div>
 							<div class='row'>
@@ -187,20 +195,20 @@ error_reporting(0);
 									$fechanueva = $_POST['Fecha'];
 									$notasnuevas=$_POST['Notas'];
 									$codigonuevo=$_POST["Codigo"];
-									//$kilometrajenuevo=$_POST["Kilometraje"];
+									$kilometrajenuevo=$_POST["Kilometraje"]; 
 									$empresanueva=$_POST['Empresa'];
 									
 
 									//obtenemos el id de la obra modificada
 
-									$sentenciaobras2="SELECT idobra FROM ga_obra where Nombreobra='$obranueva'";
+			//						$sentenciaobras2="SELECT idobra FROM ga_obra where Nombreobra='$obranueva'";
 
-									$resultadoobras2=mysqli_query($conexion, $sentenciaobras2);
+			//						$resultadoobras2=mysqli_query($conexion, $sentenciaobras2);
 
-									while($obramodificada=mysqli_fetch_array($resultadoobras2))
-									{
-										$obramodificada2=$obramodificada[0];
-									}
+			//						while($obramodificada=mysqli_fetch_array($resultadoobras2))
+			//						{
+			//							$obramodificada2=$obramodificada[0];
+			//						}
 
 
 
@@ -214,7 +222,7 @@ error_reporting(0);
 									
 										//consulta de modificación de registro
 									
-										$query2 = "UPDATE ga_salida SET litros='$cantidadnueva', fecha='$fechanueva', hora='$horanueva', idvehiculo='$matriculanueva', notas='$notasnuevas',idobra=$obramodificada2, empresa='$empresanueva' WHERE idsalida='$codigonuevo'";
+										$query2 = "UPDATE ga_salida SET kilometraje='$kilometrajenuevo', litros='$cantidadnueva', fecha='$fechanueva', hora='$horanueva', idvehiculo='$matriculanueva', notas='$notasnuevas',idobra=$obramodificada2, empresa='$empresanueva' WHERE idsalida='$codigonuevo'";
 
 										/*$modificar=mysqli_query($conexion, $query2) or die("Fallo del query2");
 
@@ -222,6 +230,8 @@ error_reporting(0);
 											require("actualizagasoil.php");*/
 
 										echo "<script>alert('Datos modificados correctamente'); window.close();</script>";
+
+
 									}
 							}
 							?>
