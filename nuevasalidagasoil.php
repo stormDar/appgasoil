@@ -8,7 +8,7 @@ require("conexion.php");
 
 	<?php
 	require("require/header.php");
-	//require("require/autocomplete-index.php");
+	require("require/autocomplete-index.php");
 	require("require/js-functions.php");
 
 	?>
@@ -136,9 +136,34 @@ require("conexion.php");
 		//							}
 
 
+
+									//obtenemos el id del vehiculo modificado
+
+									$sentenciavehiculo="SELECT IdVehiculo FROM vehiculos where MatriculaVehiculo='$matricula'";
+
+									$resultadovehiculo=mysqli_query($conexion, $sentenciavehiculo);
+
+									while($idvehiculomodificado=mysqli_fetch_array($resultadovehiculo))
+									{
+										$idvehiculomodificadoinsert=$idvehiculomodificado[0];
+									}
+
+
+									//obtenemos el id de la obra modificada
+
+									$sentenciaobras2="SELECT IdCentro FROM centros where NombreCentro='$ubicacion'";
+
+									$resultadoobras2=mysqli_query($conexion, $sentenciaobras2);
+
+									while($obramodificada=mysqli_fetch_array($resultadoobras2))
+									{
+										$idobramodificada2=$obramodificada[0];
+									}
+
+
 									//ejecutamos la consulta de introducción de registro de datos
 					
-									$query="INSERT INTO ga_salida (idvehiculo,kilometraje,fecha,hora,litros,idobra,codalmacen,notas,creador,empresa) values ('$matricula','$kilometraje','$fecha','$hora','$cantidad','$ubicacion','$almacen','$notas','$usuario','$empresa')";
+									$query="INSERT INTO ga_salida (idvehiculo,kilometraje,fecha,hora,litros,idobra,codalmacen,notas,creador,empresa) values ('$idvehiculomodificadoinsert','$kilometraje','$fecha','$hora','$cantidad','$idobramodificada2','$almacen','$notas','$usuario','$empresa')";
 
 									echo "<script>alert('Ha introducido los datos correctamente')</script>";
 

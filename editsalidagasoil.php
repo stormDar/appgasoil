@@ -8,7 +8,7 @@ error_reporting(0);
 
 	// sentencia que busca los datos referentes al codigo que recibe para modificar
 	//$query1="SELECT CantidadRepostaje, FechaRepostaje, HoraRepostaje, IdVehiculoRepostaje, NotasRepostaje,IdRepostaje,NombreObra,IdObra,KmVehiculo,Empresa FROM ga_gasoil,ga_obra WHERE IdObra=IdObraGasoil and IdRepostaje='$codigo' ";
-	$query1="SELECT idsalida, idvehiculo, fecha, hora, litros, NombreCentro, codalmacen, notas, creador, empresa, kilometraje FROM ga_salida, centros WHERE idobra=IdCentro and idsalida='$codigo'";
+	$query1="SELECT idsalida, MatriculaVehiculo, fecha, hora, litros, NombreCentro, codalmacen, notas, creador, empresa, kilometraje FROM ga_salida, centros, vehiculos WHERE idobra=IdCentro and vehiculos.IdVehiculo=ga_salida.idvehiculo and idsalida='$codigo'";
 	
 	$resultado=mysqli_query($conexion,$query1) or die("Algo ha salido mal");
 
@@ -32,7 +32,7 @@ error_reporting(0);
 	require("require/js-functions.php");
 
 	// Autocompletar
-	//require("require/autocomplete-index.php");
+	require("require/autocomplete-index.php");
 	?>
 		
 </head>
@@ -204,6 +204,17 @@ error_reporting(0);
 									}
 
 
+									//obtenemos el id del vehiculo modificado
+
+									$sentenciavehiculo="SELECT IdVehiculo FROM vehiculos where MatriculaVehiculo='$matriculanueva'";
+
+									$resultadovehiculo=mysqli_query($conexion, $sentenciavehiculo);
+
+									while($idvehiculomodificado=mysqli_fetch_array($resultadovehiculo))
+									{
+										$idvehiculomodificadoinsert=$idvehiculomodificado[0];
+									}
+
 
 									//$consul="SELECT * FROM movimientostock where CodMovimientoStock='$codigonuevo'";
 									$consul="SELECT * FROM ga_salida where idsalida='$codigonuevo'";
@@ -215,7 +226,7 @@ error_reporting(0);
 									
 										//consulta de modificación de registro
 									
-										$query2 = "UPDATE ga_salida SET kilometraje='$kilometrajenuevo', litros='$cantidadnueva', fecha='$fechanueva', hora='$horanueva', idvehiculo='$matriculanueva', notas='$notasnuevas', idobra='$idobramodificada2', empresa='$empresanueva' WHERE idsalida='$codigonuevo'";
+										$query2 = "UPDATE ga_salida SET kilometraje='$kilometrajenuevo', litros='$cantidadnueva', fecha='$fechanueva', hora='$horanueva', idvehiculo='$idvehiculomodificadoinsert', notas='$notasnuevas', idobra='$idobramodificada2', empresa='$empresanueva' WHERE idsalida='$codigonuevo'";
 
 										$modificar=mysqli_query($conexion, $query2) or die("Fallo del query2");
 

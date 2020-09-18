@@ -14,7 +14,7 @@
 	//Funciones de JS
 	require("require/js-functions.php");
 	//Autocompletar los parámetros de busqueda del Index
-	//require("require/autocomplete-index.php");
+	require("require/autocomplete-index.php");
 	//Actualizar gasoil
 	//require("actualizagasoil.php");
 
