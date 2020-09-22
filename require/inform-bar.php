@@ -10,6 +10,21 @@
 					<div class="informes-bar">
 						<div class="row">
 							<div class="col-12">
+								<h3>Llenado tanque</h3>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<a onclick="informgasoilfecha();" href="#"><h4>Nuevo registro de llenado</h4></a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<a onclick="informgasoilfecha();" href="#"><h4>Historico llenados</h4></a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
 								<h3>Informes</h3>
 							</div>
 						</div>

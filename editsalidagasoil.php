@@ -8,7 +8,7 @@ error_reporting(0);
 
 	// sentencia que busca los datos referentes al codigo que recibe para modificar
 	//$query1="SELECT CantidadRepostaje, FechaRepostaje, HoraRepostaje, IdVehiculoRepostaje, NotasRepostaje,IdRepostaje,NombreObra,IdObra,KmVehiculo,Empresa FROM ga_gasoil,ga_obra WHERE IdObra=IdObraGasoil and IdRepostaje='$codigo' ";
-	$query1="SELECT idsalida, MatriculaVehiculo, fecha, hora, litros, NombreCentro, codalmacen, notas, creador, empresa, kilometraje FROM ga_salida, centros, vehiculos WHERE idobra=IdCentro and vehiculos.IdVehiculo=ga_salida.idvehiculo and idsalida='$codigo'";
+	$query1="SELECT idsalida, MatriculaVehiculo, fecha, hora, litros, NombreCentro, codalmacen, notas, creador, empresa, kilometraje, particular FROM ga_salida, centros, vehiculos WHERE idobra=IdCentro and vehiculos.IdVehiculo=ga_salida.idvehiculo and idsalida='$codigo'";
 	
 	$resultado=mysqli_query($conexion,$query1) or die("Algo ha salido mal");
 
@@ -80,6 +80,7 @@ error_reporting(0);
 							$kilometraje=$anterior[10];
 							//$empresa=$anterior['Empresa'];
 							$empresa=$anterior[9];
+							$particular=$anterior[11];
 
 							//obtenemos el id de la obra modificada
 
@@ -106,6 +107,12 @@ error_reporting(0);
 								<div class='col-2'>Matrícula</div>
 								<div class='col-4'>
 									<input type="text" name="Matricula" id="Matricula" value="<?php echo "$matricula" ?>">
+								</div>
+							</div>
+							<div class='row'>
+								<div class='col-2'>Particular</div>
+								<div class='col-4'>
+									<input type="text" name="Particular" id="Particular" value="<?php echo "$particular" ?>">
 								</div>
 							</div>
 							<div class="row">
@@ -190,6 +197,7 @@ error_reporting(0);
 									$codigonuevo=$_POST["Codigo"];
 									$kilometrajenuevo=$_POST["Kilometraje"]; 
 									$empresanueva=$_POST['Empresa'];
+									$particularnueva=$_POST['Particular'];
 									
 
 									//obtenemos el id de la obra modificada
@@ -226,7 +234,7 @@ error_reporting(0);
 									
 										//consulta de modificación de registro
 									
-										$query2 = "UPDATE ga_salida SET kilometraje='$kilometrajenuevo', litros='$cantidadnueva', fecha='$fechanueva', hora='$horanueva', idvehiculo='$idvehiculomodificadoinsert', notas='$notasnuevas', idobra='$idobramodificada2', empresa='$empresanueva' WHERE idsalida='$codigonuevo'";
+										$query2 = "UPDATE ga_salida SET kilometraje='$kilometrajenuevo', litros='$cantidadnueva', fecha='$fechanueva', hora='$horanueva', idvehiculo='$idvehiculomodificadoinsert', notas='$notasnuevas', idobra='$idobramodificada2', empresa='$empresanueva', particular='$particularnueva' WHERE idsalida='$codigonuevo'";
 
 										$modificar=mysqli_query($conexion, $query2) or die("Fallo del query2");
 

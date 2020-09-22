@@ -68,6 +68,13 @@ require("conexion.php");
 							<option value="Automatismos Felipe">Automatismos Felipe</option>
 						</select>
 					</div>
+					<div class="col-4">
+						Particular: <br>
+						<select name="Particular">
+							<option value="No">No</option>
+							<option value="Si">Si</option>
+						</select>
+					</div>
 				</div>
 				<div class="row"> 
 					<div class="col-12">
@@ -92,8 +99,7 @@ require("conexion.php");
 
 								//mostramos los datos de la busqueda
 								if (isset($_POST['token'])) {
-								//$var='1';
-								//if ($var=1)	{
+								
 									//Obtenemos los datos recibidos
 
 									$matricula=$_POST["Matricula"];
@@ -108,6 +114,7 @@ require("conexion.php");
 									$kilometraje=$_POST['Kilometraje'];
 									$hora=$_POST['Hora'];
 									$empresa=$_POST['Empresa'];
+									$particular=$_POST['Particular'];
 
 									//transformar el texto recibido en obra
 
@@ -163,7 +170,7 @@ require("conexion.php");
 
 									//ejecutamos la consulta de introducción de registro de datos
 					
-									$query="INSERT INTO ga_salida (idvehiculo,kilometraje,fecha,hora,litros,idobra,codalmacen,notas,creador,empresa) values ('$idvehiculomodificadoinsert','$kilometraje','$fecha','$hora','$cantidad','$idobramodificada2','$almacen','$notas','$usuario','$empresa')";
+									$query="INSERT INTO ga_salida (idvehiculo,kilometraje,fecha,hora,litros,idobra,codalmacen,notas,creador,empresa, particular) values ('$idvehiculomodificadoinsert','$kilometraje','$fecha','$hora','$cantidad','$idobramodificada2','$almacen','$notas','$usuario','$empresa', '$particular')";
 
 									echo "<script>alert('Ha introducido los datos correctamente')</script>";
 
