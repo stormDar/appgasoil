@@ -75,8 +75,10 @@ require("../seguridad.php");
 									$fecha = $_POST["Fecha"];
 									$precio=$_POST["Precio"];
 									$total=$_POST["Total"];
-									$almacen=$_SESSION['almacen'];
-									$usuario=$_SESSION['usuario'];
+									//$almacen=$_SESSION['almacen'];
+									//$usuario=$_SESSION['usuario'];
+									$almacen='1';
+									$usuario='el_creador';
 									$notas=$_POST["Notas"];
 
 									//ejecutamos la consulta de introducción de registro de datos
